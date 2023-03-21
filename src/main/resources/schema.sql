@@ -1,0 +1,24 @@
+CREATE TABLE IF NOT EXISTS Student(
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS Attendance(
+    id INT AUTO_INCREMENT PRIMARY KEY ,
+    student_id VARCHAR(20) NOT NULL ,
+    status ENUM('IN','OUT') NOT NULL ,
+    stamp DATETIME NOT NULL,
+    CONSTRAINT fk_Attendance FOREIGN KEY (student_id) REFERENCES Student(id)
+);
+
+CREATE TABLE IF NOT EXISTS Picture(
+    student_id VARCHAR(20) PRIMARY KEY,
+    picture MEDIUMBLOB NOT NULL,
+    CONSTRAINT fk_Picture FOREIGN KEY (student_id) REFERENCES Student(id)
+);
+
+CREATE TABLE IF NOT EXISTS User(
+    user_name VARCHAR(50) PRIMARY KEY,
+    password VARCHAR(100) NOT NULL,
+    full_name VARCHAR(100) NOT NULL
+);
+
